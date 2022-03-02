@@ -1,0 +1,91 @@
+#include<iostream>
+#include<cmath>
+#include<iomanip>
+//abcdefghijklmnopqrstuvwxyz
+//Sjdlz jt b ebno tiju 
+using namespace std;
+char kaisa(char a,int b)
+{
+	if((a>='A'&&a-b<'A')||(a>='a'&&a-b<'a'))
+	{
+		a+=26;
+	}
+	a-=b;
+	return a;
+}
+int main(){
+	string a,b,check,r;
+	getline(cin,a);
+	int len,llen=0,yuany=0,fu=0,tru=0,start=0,o,k=-10000,ri;
+	len=a.length();
+	for (int x=1;x<26;x++){
+		b="";
+		check="";
+		yuany=0;
+		fu=0;
+		tru=0;
+		for (int y=0;y<len;y++){
+			if (a[y]<='z'&&a[y]>='a' || a[y]<='Z'&&a[y]>='A'){
+				b+=kaisa(a[y],x);
+			}
+			else{
+				b+=a[y];
+			}
+		}
+		start=0;
+		for (int u=0;u<7;u++){
+			llen=b.length();
+			yuany=0;
+			fu=0;
+			check="";
+			for (int y=start;y<llen;y++){
+				if (b[y]!=' '){
+					check+=b[y];
+				}
+				else{
+					o=y;
+					break;
+				}
+			}
+			start=o+1;
+			llen=check.length();
+			if (llen==1){
+				if (check=="a" || check=="I"|| check=="A"){
+					tru+=1;
+				}
+			}
+			else{
+				for (int q=0;q<llen;q++){
+					if (check[q] == 'A'||check[q] == 'E'||check[q] == 'I'||check[q] == 'O'||check[q] == 'U'||check[q] == 'a'||check[q] == 'e'||check[q] == 'i'||check[q] == 'o'||check[q] == 'u'){
+						yuany+=1;
+					}
+					else{
+						fu+=1;
+					}
+					
+				}
+				if (llen/2==yuany){
+					if (llen%2>0){
+						if (llen/2+1==fu){
+							tru+=1;
+						}
+					}
+					else{
+						if (llen/2==fu){
+							tru+=1;
+							
+						}
+					}
+				}
+			}
+	}
+	if (tru>k){
+		k=tru;
+		r=b;
+		ri=x;
+	}
+	}
+	cout<<ri<<endl;
+	cout<<r<<endl;
+	
+}
